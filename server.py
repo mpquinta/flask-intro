@@ -13,6 +13,9 @@ AWESOMENESS = [
     'oh-so-not-meh', 'brilliant', 'ducky', 'coolio', 'incredible',
     'wonderful', 'smashing', 'lovely']
 
+INSULTS = [
+  'ugly', 'stinky', 'kakapoopoo', 'smelly']
+
 
 @app.route('/')
 def start_here():
@@ -94,6 +97,26 @@ def greet_person():
       </head>
       <body>
         Hi, {player}! I think you're {compliment}!
+      </body>
+    </html>
+    """
+
+@app.route('/diss')
+def greet_person():
+    """Insult the user."""
+
+    player = request.args.get("person")
+
+    insult = choice(INSULTS)
+
+    return f"""
+    <!doctype html>
+    <html>
+      <head>
+        <title>An Insult</title>
+      </head>
+      <body>
+        Hi, {player}! I think you're {insult}!
       </body>
     </html>
     """
