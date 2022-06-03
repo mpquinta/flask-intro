@@ -18,13 +18,17 @@ AWESOMENESS = [
 def start_here():
     """Home page."""
 
-    return "<!doctype html><html>Hi! This is the home page.</html>"
+    return """
+    <!doctype html>
+    <html>Hi! This is the home page.<br>
+    <a href="/hello">Link to hello</a>
+    </html>"""
 
 
 @app.route('/hello')
 def say_hello():
     """Say hello and prompt for user's name."""
-
+    print("test!")
     return """
     <!doctype html>
     <html>
@@ -34,8 +38,40 @@ def say_hello():
       <body>
         <h1>Hi There!</h1>
         <form action="/greet">
-          What's your name? <input type="text" name="person">
-          <input type="submit" value="Submit">
+          What's your name? <input type="text" name="person"><br><br>
+
+          Choose a compliment:<br>
+          <input type="radio" name="compliment" value="awesome">
+          <label for="awesome">Awesome</label><br>
+          <input type="radio" name="compliment" value="terrific">
+          <label for="terrific">terrific</label><br>
+          <input type="radio" name="compliment" value="fantastic">
+          <label for="fantastic">fantastic</label><br>
+          <input type="radio" name="compliment" value="neato">
+          <label for="neato">neato</label><br>
+          <input type="radio" name="compliment" value="fantabulous">
+          <label for="fantabulous">fantabulous</label><br>
+          <input type="radio" name="compliment" value="wowza">
+          <label for="wowza">wowza</label><br>
+          <input type="radio" name="compliment" value="oh-so-not-meh">
+          <label for="oh-so-not-meh">oh-so-not-meh</label><br>
+          <input type="radio" name="compliment" value="brilliant">
+          <label for="brilliant">brilliant</label><br>
+          <input type="radio" name="compliment" value="ducky">
+          <label for="ducky">ducky</label><br>
+          <input type="radio" name="compliment" value="coolio">
+          <label for="coolio">coolio</label><br>
+          <input type="radio" name="compliment" value="incredible">
+          <label for="incredible">incredible</label><br>
+          <input type="radio" name="compliment" value="wonderful">
+          <label for="wonderful">wonderful</label><br>
+          <input type="radio" name="compliment" value="smashing">
+          <label for="smashing">smashing</label><br>
+          <input type="radio" name="compliment" value="lovely">
+          <label for="lovely">lovely</label><br>
+
+          <input type="submit" value="submit">
+          
         </form>
       </body>
     </html>
@@ -48,7 +84,7 @@ def greet_person():
 
     player = request.args.get("person")
 
-    compliment = choice(AWESOMENESS)
+    compliment = request.args.get("compliment")
 
     return f"""
     <!doctype html>
